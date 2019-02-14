@@ -1,0 +1,66 @@
+<div class="container-fluid" >
+<br />
+
+<div class="card" >
+  <h5 class="card-header"> HTML and Javascript Injection </h5>
+  <div class="card-body">
+
+    <div>
+      <span class="badge badge-primary" > {{raw}}
+      </span> -> <span class="badge badge-success"> Safe </span>
+
+      <div>
+        {{msg}}
+      </div>
+    </div>
+
+    <hr />
+
+    <div>
+      <span class="badge badge-primary" > {{raw}}
+      </span> -> <span class="badge badge-success"> Safe </span>
+
+      <div [innerHTML]="msg"></div>
+      evil tag 
+      <div [innerHTML]="eviltag"></div>
+    </div>  
+  </div>
+
+</div>
+
+<br />
+
+<div class="card" >
+  <h5 class="card-header"> Attribute and Event Injection </h5>
+  <div class="card-body">
+
+    <div>
+      <span class="badge badge-primary" > href={{url}}
+      </span> -> <span class="badge badge-success"> Safe </span>
+
+      <div>
+        <a class="badge badge-secondary" href={{url}}>clickme</a>
+        <!-- <a [href]={{url}}>Click me</a>. -->
+      </div>
+    </div>
+
+    <hr>
+
+    <div>
+      <span class="badge badge-primary" > onclick={{evt}}
+      </span> -> <span class="badge badge-success"> Safe </span>
+
+      <div>
+        <a class="badge badge-secondary" href="#" (click)="onClick()">clickme</a>
+      </div>
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+
+

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+
+  <script src="//code.angularjs.org/1.7.7/angular.min.js"></script>
+  <script src="//code.angularjs.org/1.7.7/angular-sanitize.js"></script>
+
+  <!-- <script src="script.js"></script> -->
+  
+  <title>AngularJS App</title>
+
+
+  
+</head>
+
+<body >
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+
+        <a class="navbar-brand" href="#">
+        <img src="https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        AngularJS
+        </a>
+    </nav>
+<!-- 
+msg = ' Hello Angular  <a href="javascript:alert(1)" class="badge badge-dark" onclick=alert(1)>clickme</a> ';
+  eviltag = " <svg/onload=alert(1)>";
+
+
+  rawjs = 'alert(1)';
+  url = 'javascript:alert(1)';
+  evt = 'alert(1)';
+  raw = '{{msg}}'; -->
+
+
+  <div class="container-fluid" ng-app='bindHtmlExample'>
+    <br>
+
+    <div class="card" >
+      <h5 class="card-header" style="background-color: #e3f2fd;"> HTML and Javascript Injection </h5>
+      <div class="card-body">
+
+        <div>
+        <h6 class="card-subtitle mb-2 text-muted">Default Render</h6>
+          <span class="badge badge-primary" > &#x20;&#x3c;&#x73;&#x76;&#x67;&#x2f;&#x6f;&#x6e;&#x6c;&#x6f;&#x61;&#x64;&#x3d;&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;&#x3e;</span> -> <span class="badge badge-success"> Safe </span>
+
+
+          <div ng-init='urltag = "Hello Angular <a href=javascript:alert(1)>clickme</a>";'>
+            {{urltag}}
+          </div>
+        </div>
+
+        <hr />
+
+        <div>
+        <h6 class="card-subtitle mb-2 text-muted">Render ng-bind-html</h6>
+
+          <span class="badge badge-primary" > &#x48;&#x65;&#x6c;&#x6c;&#x6f;&#x20;&#x41;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x20;&#x20;&#x3c;&#x61;&#x20;&#x68;&#x72;&#x65;&#x66;&#x3d;&#x22;&#x6a;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3a;&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;&#x22;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x62;&#x61;&#x64;&#x67;&#x65;&#x20;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x64;&#x61;&#x72;&#x6b;&#x22;&#x20;&#x6f;&#x6e;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x3d;&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;&#x3e;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x6d;&#x65;&#x3c;&#x2f;&#x61;&#x3e;
+          </span> -> <span class="badge badge-success"> Safe </span>
+
+          <div ng-controller="ExampleController">
+           <p ng-bind-html="myHTML"></p>
+          </div>
+        </div> 
+
+
+        <hr>
+        <div>
+        <h6 class="card-subtitle mb-2 text-muted">AngularJS Template Injection</h6>
+
+          <span class="badge badge-primary" > {{  "{{ 7*7 }\}"   }}  
+          </span> -> <span class="badge badge-danger"> Unsafe </span>
+
+          <div>
+              {{7*7}}
+          </div>
+   
+
+          <span class="badge badge-primary" > {{  "{{constructor.constructor('console.log('XSS')')()}\} "   }}  
+          </span> -> <span class="badge badge-danger"> Unsafe </span>
+
+          <div>
+              {{constructor.constructor('console.log("XSS")')()}}          
+          </div>
+        </div> 
+
+
+      </div>
+
+    </div>
+
+    <br />
+
+    <div class="card" >
+      <h5 class="card-header" style="background-color: #e3f2fd;"> Attribute and Event Injection </h5>
+      <div class="card-body">
+
+        <div>
+        <h6 class="card-subtitle mb-2 text-muted">Attribute Injection</h6>
+          <span class="badge badge-primary" > href=javascript:alert(1)</span> -> <span class="badge badge-success"> Safe </span>
+
+
+          <div ng-init='evilurl = javascript:alert(1);'>
+            <a href={{evilurl}}>Clickme</a>
+          </div>
+        </div>
+
+        <hr />
+
+        <div>
+        <h6 class="card-subtitle mb-2 text-muted">Event Injection</h6>
+
+          <span class="badge badge-primary" > onclick=alert(1)
+          </span> -> <span class="badge badge-success"> Safe </span>
+
+          <div ng-init='evt = console.log(1);'>
+            <a href=# ng-click="alert(1)" >Clickme</a>
+          </div>
+        </div> 
+
+
+
+
+      </div>
+
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+(function(angular) {
+  'use strict';
+angular.module('bindHtmlExample', ['ngSanitize'])
+
+  .controller('ExampleController', ['$scope', function($scope) {
+
+    $scope.myHTML =
+       'Hello Angular  <a href="javascript:alert(1)" class="badge badge-dark" onclick=alert(1)>clickme</a>';
+       
+  }]);
+  
+})(window.angular);
+
+</script>
+<!--  -->
+
+
+</body>
+</html>
+

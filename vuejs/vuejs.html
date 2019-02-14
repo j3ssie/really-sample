@@ -1,0 +1,108 @@
+
+<!-- https://vuejs.org/v2/guide/#Getting-Started -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <!-- Vuejs CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+    <title>VueJS App </title>
+
+
+  </head>
+  <body>
+ <body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+
+      <a class="navbar-brand" href="#">
+        <img src="https://vuejs.org/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Vuejs
+      </a>
+    </nav>
+
+    <br />
+
+    <div id="app" class="container-fluid">
+
+        <div class="card">
+          <h5 class="card-header" style="background-color: #e3f2fd;">HTML and Javascript Injection</h5>
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">Default Render</h6>
+            <div>
+              <span class="badge badge-primary"> {{ raw }}</span> -> <span class="badge badge-success"> Safe</span>
+              {{ msg }}
+            </div>
+            <hr>
+            <div>
+              <span class="badge badge-primary"> Using v-html directive </span> ->
+              <span class="badge badge-danger"> UnSafe</span>
+              <span v-html="msg"></span>
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card">
+          <h5 class="card-header" style="background-color: #e3f2fd;">Attribute and Event Injection</h5>
+          <div class="card-body">
+
+            <!-- <p> <span class="badge badge-success">Unsafe:</span>  </p> -->
+
+            <div>
+            <h6 class="card-subtitle mb-2 text-muted">Default Render</h6>  
+              <span class="badge badge-primary">v-bind:href="url"</span> -> <span class="badge badge-danger"> Unsafe</span>
+              
+              <a class="badge badge-secondary" v-bind:href="url"> clickme </a>
+            </div>
+            <hr>
+            <div>  
+              <span class="badge badge-primary">v-bind:onmouseover="evt"</span> -> <span class="badge badge-danger"> Unsafe</span>
+
+              <a class="badge badge-secondary" v-bind:onmouseover="evt"> hoverme </a>
+            </div>
+
+
+           
+          </div>
+        </div>
+
+    </div>
+
+
+<script type="text/javascript">
+
+new Vue({
+  el: '#app',
+  data: {
+    msg: 'Hello Vue.js!  <a href="#" class="badge badge-dark" onclick=alert(1)>clickme</a> ',
+    rawjs: 'alert(1)',
+    url: 'javascript:alert(1)',
+    evt: 'alert(1)',
+    raw: '{{ msg }}',
+  }
+})
+
+
+</script>
+  </body>
+</html>
+
+
+
+

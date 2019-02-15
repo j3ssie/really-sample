@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: [ './app.component.css' ]
 })
-export class AppComponent {
-  title = 'angular-app';
-
-  // This should cause an error
-  // alert(3);
+export class AppComponent  {
+    name = 'Angular 7';
+    title = 'angular-app';
 
 
-  msg = ' Hello Angular  <a href="javascript:alert(1)" class="badge badge-dark" onclick=alert(1)>clickme</a> ';
-  eviltag = " <svg/onload=alert(1)>";
+    // This should cause an error
+    // alert(3);
 
+    eviltag = '<a href="javascript:alert(1)" class="badge badge-dark" onclick=alert(1)>clickme</a><script>console.log("XSS")</script>';
+    msg = ' Hello Angular  <a href="javascript:alert(1)" class="badge badge-dark" onclick=alert(1)>clickme</a> ';
 
-  rawjs = 'alert(1)';
-  url = 'javascript:alert(1)';
-  evt = 'alert(1)';
-  raw = '{{msg}}';
+    rawjs = 'alert(1)';
+    url = 'javascript:alert(1)';
+    evt = 'alert(1)';
+    raw = '{{msg}}';
 
-  onClick(){
+    onClick(){
     console.log('clicked!');
-  }
+    }
 
 }

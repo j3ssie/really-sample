@@ -1,3 +1,4 @@
+
 <div class="container-fluid" >
 <br />
 
@@ -6,6 +7,7 @@
   <div class="card-body">
 
     <div>
+    <h6 class="card-subtitle mb-2 text-muted">Default Render</h6>  
       <span class="badge badge-primary" > {{raw}}
       </span> -> <span class="badge badge-success"> Safe </span>
 
@@ -17,13 +19,28 @@
     <hr />
 
     <div>
-      <span class="badge badge-primary" > {{raw}}
+        <h6 class="card-subtitle mb-2 text-muted">Default innerHTML Render</h6>  
+      <span class="badge badge-primary" >  [innerHTML]="msg"
       </span> -> <span class="badge badge-success"> Safe </span>
 
       <div [innerHTML]="msg"></div>
-      evil tag 
-      <div [innerHTML]="eviltag"></div>
-    </div>  
+
+    </div>
+
+    <hr>
+    <div>
+        <h6 class="card-subtitle mb-2 text-muted">Unsafe innerHTML Render</h6>  
+      <span class="badge badge-primary" >  [innerHTML]="msg | sanitizeHtml"
+      </span> -> <span class="badge badge-danger"> Unsafe </span>
+
+      <div>
+        <span [innerHTML]="msg | sanitizeHtml"></span>
+    </div>
+
+    </div>
+
+
+
   </div>
 
 </div>
@@ -31,6 +48,8 @@
 <br />
 
 <div class="card" >
+<h6 class="card-subtitle mb-2 text-muted">Default Attribute Render</h6>  
+
   <h5 class="card-header"> Attribute and Event Injection </h5>
   <div class="card-body">
 
@@ -40,13 +59,14 @@
 
       <div>
         <a class="badge badge-secondary" href={{url}}>clickme</a>
-        <!-- <a [href]={{url}}>Click me</a>. -->
       </div>
     </div>
 
     <hr>
 
     <div>
+<h6 class="card-subtitle mb-2 text-muted">Default Event Render</h6>  
+
       <span class="badge badge-primary" > onclick={{evt}}
       </span> -> <span class="badge badge-success"> Safe </span>
 
